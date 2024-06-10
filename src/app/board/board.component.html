@@ -1,0 +1,57 @@
+<h1>Tic Tac Toe</h1>
+
+<ng-container *ngIf="!hasGameFinished">
+  <p><strong>Next player:</strong> {{ currentPlayer }}</p>
+</ng-container>
+
+<ng-container *ngIf="hasGameFinished">
+  <p>
+    <strong>Player {{ currentPlayer }} won!</strong>
+  </p>
+</ng-container>
+
+<ng-container *ngIf="finishedAsDraw">
+    <p>
+      <strong>That's a draw.</strong>
+    </p>
+  </ng-container>
+
+<button class="button" (click)="restart()">Restart</button>
+
+<div class="board-row">
+  <app-box [squareNumber]="0" (onSquareClick)="handleSquareClick(0)"></app-box>
+  <app-box [squareNumber]="1" (onSquareClick)="handleSquareClick(1)"></app-box>
+  <app-box [squareNumber]="2" (onSquareClick)="handleSquareClick(2)"></app-box>
+</div>
+<div class="board-row">
+  <app-box [squareNumber]="3" (onSquareClick)="handleSquareClick(3)"></app-box>
+  <app-box [squareNumber]="4" (onSquareClick)="handleSquareClick(4)"></app-box>
+  <app-box [squareNumber]="5" (onSquareClick)="handleSquareClick(5)"></app-box>
+</div>
+<div class="board-row">
+  <app-box [squareNumber]="6" (onSquareClick)="handleSquareClick(6)"></app-box>
+  <app-box [squareNumber]="7" (onSquareClick)="handleSquareClick(7)"></app-box>
+  <app-box [squareNumber]="8" (onSquareClick)="handleSquareClick(8)"></app-box>
+</div>
+
+<h2>Movements</h2>
+<div class="players-history-board">
+  <div class="player-data">
+    <strong>Player X</strong>
+
+    <ul>
+      <li *ngFor="let movement of getMovementsFromPlayer('X')">
+        <strong>#{{ movement.player }}</strong> clicked in square <strong>#{{ movement.squareNumber }}</strong>
+      </li>
+    </ul>
+  </div>
+  <div class="player-data">
+    <strong>Player O</strong>
+
+    <ul>
+      <li *ngFor="let movement of getMovementsFromPlayer('O')">
+        <strong>#{{ movement.player }}</strong> clicked in square <strong>#{{ movement.squareNumber }}</strong>
+      </li>
+    </ul>
+  </div>
+</div>
